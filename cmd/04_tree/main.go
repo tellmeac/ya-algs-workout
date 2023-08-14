@@ -38,13 +38,13 @@ func main() {
 	fmt.Println(sum)
 }
 
-func dfs(node *Node, add func(int)) {
+func dfs(node *Node, callback func(val int)) {
 	if node == nil {
 		return
 	}
 
-	add(node.Val)
+	callback(node.Val)
 
-	dfs(node.Left, add)
-	dfs(node.Right, add)
+	dfs(node.Left, callback)
+	dfs(node.Right, callback)
 }
