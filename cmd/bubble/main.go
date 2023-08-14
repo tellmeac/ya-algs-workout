@@ -14,7 +14,7 @@ func main() {
 
 	sortBubble(s)
 
-	fmt.Printf("%+v", s)
+	fmt.Printf("%+v\n", s)
 }
 
 func sortBubble(s []int) {
@@ -22,6 +22,7 @@ func sortBubble(s []int) {
 		for jdx := idx + 1; jdx < len(s); jdx++ {
 			if s[idx] > s[jdx] {
 				s[idx], s[jdx] = s[jdx], s[idx]
+				fmt.Printf("%+v\n", s)
 			}
 		}
 	}
