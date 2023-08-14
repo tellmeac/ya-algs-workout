@@ -32,22 +32,28 @@ func main() {
 		},
 	}
 
-	sum := 0
+	required := 22
 
-	dfs(root, func(v int) {
-		sum += v
+	ok := false
+	dfs(root, 0, required, func() {
+		ok = true
 	})
 
-	fmt.Println(sum)
+	fmt.Println(ok)
 }
 
-func dfs(node *Node, callback func(val int)) {
+// dfs, use validate to
+func dfs(node *Node, acc, req int, validate func()) {
 	if node == nil {
 		return
 	}
 
-	callback(node.Val)
+	acc = acc + node.Val
 
-	dfs(node.Left, callback)
-	dfs(node.Right, callback)
+	if node.Left == nil && node.Right == nil && acc == req {
+		validate()
+	}
+
+	dfs(node.Left, acc, req, validate)
+	dfs(node.Right, acc, req, validate)
 }
